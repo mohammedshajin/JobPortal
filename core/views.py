@@ -3,6 +3,7 @@ from django.forms.forms import Form
 from django.shortcuts import redirect, render
 from .forms import RegisterForm
 from django.contrib.auth import login 
+from django.contrib import messages
 
 def home(request):
     if request.method == "POST":
@@ -15,4 +16,6 @@ def home(request):
         form = RegisterForm()
 
     return render(request, 'index.html', {'form': form})
+from django.contrib.auth import authenticate, login
+
 
