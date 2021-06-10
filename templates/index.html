@@ -71,9 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
                                 <a href="contact.html">contact</a>
                             </li>
-                            <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                                <a href="{% url 'register' %}">signup</a>
-                            </li>
+
                         </ul>
                         <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
                             aria-pressed="false" data-target="#exampleModal1">
@@ -777,26 +775,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post" class="p-3">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-rname"
-                                required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" placeholder=" " name="Email" id="recipient-email"
-                                required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-                                required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="password2" class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2"
-                                required="">
-                        </div>
+                        {% csrf_token %}
+                        {{ form.as_p }}
                         <div class="sub-w3l">
                             <div class="sub-w3ltd">
                                 <input type="checkbox" id="brand2" value="">
