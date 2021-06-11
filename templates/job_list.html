@@ -3,7 +3,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -23,10 +23,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
     </script>
     <!-- Custom Theme files -->
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <!-- //Custom Theme files -->
     <!-- online-fonts -->
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
@@ -38,7 +38,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <header>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
-                <h1><a class="navbar-brand" href="index.html">Recruit
+                <h1><a class="navbar-brand" href="{% url 'home' %}">Recruit
 
                     </a></h1>
                 <button class="navbar-toggler ml-lg-auto ml-sm-5 bg-light" type="button" data-toggle="collapse"
@@ -49,33 +49,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="ml-lg-5 navbar-nav mr-lg-auto">
                         <li class="nav-item mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                            <a href="index.html">Home</a>
+                            <a href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
                             <a href="about.html">about</a>
                         </li>
-                        <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3  active ">
-                            <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                Pages
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="job_list.html">Job List</a>
-                                <a href="job_single.html">Job Single</a>
-                            </div>
-                        </li>
+                       
                         <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
                             <a href="contact.html">contact</a>
                         </li>
                     </ul>
-                    <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
-                        aria-pressed="false" data-target="#exampleModal1">
-                        Register
-                    </button>
-                    <button type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block"
-                        data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
-                        Sign in
-                    </button>
+                    {% if request.user.is_authenticated %}
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                            aria-pressed="false" data-target="#exampleModal1">
+                            <a href="{% url 'post_job' %}" style="color: white;">Post A Job</a>
+                        </button>
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                            aria-pressed="false" data-target="#exampleModal1">
+                            <a href="{% url 'logout' %}" style="color: white;">logout</a>
+                        </button>
+                        {% else %}
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                            aria-pressed="false" data-target="#exampleModal1">
+                            Register
+                        </button>
+                        <button type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block"
+                            data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+                            <a href="{% url 'login' %}" style="color: white;">Sign in</a>
+                        </button>
+                        {% endif %}
                 </div>
             </nav>
         </div>
@@ -217,11 +219,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
                 <div class="col-lg-8">
+                    
                     <div class="row">
-                        <div class="col-sm-6 e-left">
-                            <a href="#"><img src="images/b2.jpg" alt="" class="img-fluid"></a>
+                        {% for job in jobs %}
+                        <div class="col-sm-6 e-left" style="border-style: solid; border-color: #efefef;">
+                            <a href="#"><img src="{{ job.image.url }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="job_single.html">Lead Android Developer </a></h6>
+                                <h6><a href="job_single.html">{{ job.title }}</a></h6>
 
                                 <ul class="e-tags">
                                     <li>
@@ -235,19 +239,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <ul class="desc-list">
                                     <li>
                                         <span>Location:</span>
-                                        loremipsum, dolor
+                                        {{ job.location }}
                                     </li>
                                     <li>
                                         <span>Salary:</span>
-                                        Negotiable
+                                        {{ job.salary }}
                                     </li>
                                     <li>
-                                        <span>Experience</span>
-                                        Expert
+                                        <span>Experience:</span>
+                                        {{ job.experience }}
                                     </li>
                                     <li>
                                         <span>Posted: </span>
-                                        32 minutes ago
+                                        {{ job.posted }}
                                     </li>
                                 </ul>
                                 <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
@@ -255,196 +259,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     for job</a>
                             </div>
                         </div>
-                        <div class="col-sm-6 e-left">
-                            <a href="#"><img src="images/b1.jpg" alt="" class="img-fluid"></a>
-                            <div class="e-desc">
-                                <h6><a href="job_single.html">Senior Front - End Engineer </a></h6>
-
-                                <ul class="e-tags">
-                                    <li>
-                                        javascript</li>
-
-                                    <li>computer vision</li>
-                                    <li>angular js</li>
-                                    <li>c++</li>
-                                </ul>
-                                <hr>
-                                <ul class="desc-list">
-                                    <li>
-                                        <span>Location:</span>
-                                        loremipsum, dolor
-                                    </li>
-                                    <li>
-                                        <span>Salary:</span>
-                                        Negotiable
-                                    </li>
-                                    <li>
-                                        <span>Experience</span>
-                                        Expert
-                                    </li>
-                                    <li>
-                                        <span>Posted: </span>
-                                        5 hours ago
-                                    </li>
-                                </ul>
-                                <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                    aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                    for job</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row my-4">
-                        <div class="col-sm-6 e-left">
-                            <a href="#"><img src="images/b3.jpg" alt="" class="img-fluid"></a>
-                            <div class="e-desc">
-                                <h6><a href="job_single.html">Senior Java Developer
-                                    </a></h6>
-
-                                <ul class="e-tags">
-                                    <li>
-                                        javascript</li>
-
-                                    <li>computer vision</li>
-                                    <li>angular js</li>
-                                    <li>c++</li>
-                                </ul>
-                                <hr>
-                                <ul class="desc-list">
-                                    <li>
-                                        <span>Location:</span>
-                                        loremipsum, dolor
-                                    </li>
-                                    <li>
-                                        <span>Salary:</span>
-                                        Negotiable
-                                    </li>
-                                    <li>
-                                        <span>Experience</span>
-                                        Expert
-                                    </li>
-                                    <li>
-                                        <span>Posted: </span>
-                                        1 day ago
-                                    </li>
-                                </ul>
-                                <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                    aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                    for job</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 e-left">
-                            <a href="#"><img src="images/b1.jpg" alt="" class="img-fluid"></a>
-                            <div class="e-desc">
-                                <h6><a href="job_single.html">Senior Front - End Engineer </a></h6>
-
-                                <ul class="e-tags">
-                                    <li>
-                                        javascript</li>
-
-                                    <li>computer vision</li>
-                                    <li>angular js</li>
-                                    <li>c++</li>
-                                </ul>
-                                <hr>
-                                <ul class="desc-list">
-                                    <li>
-                                        <span>Location:</span>
-                                        loremipsum, dolor
-                                    </li>
-                                    <li>
-                                        <span>Salary:</span>
-                                        Negotiable
-                                    </li>
-                                    <li>
-                                        <span>Experience</span>
-                                        Expert
-                                    </li>
-                                    <li>
-                                        <span>Posted: </span>
-                                        2 days ago
-                                    </li>
-                                </ul>
-                                <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                    aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                    for job</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 e-left">
-                            <a href="#"><img src="images/b2.jpg" alt="" class="img-fluid"></a>
-                            <div class="e-desc">
-                                <h6><a href="job_single.html">Lead Android Developer </a></h6>
-
-                                <ul class="e-tags">
-                                    <li>
-                                        javascript</li>
-
-                                    <li>computer vision</li>
-                                    <li>angular js</li>
-                                    <li>c++</li>
-                                </ul>
-                                <hr>
-                                <ul class="desc-list">
-                                    <li>
-                                        <span>Location:</span>
-                                        loremipsum, dolor
-                                    </li>
-                                    <li>
-                                        <span>Salary:</span>
-                                        Negotiable
-                                    </li>
-                                    <li>
-                                        <span>Experience</span>
-                                        Expert
-                                    </li>
-                                    <li>
-                                        <span>Posted: </span>
-                                        5 days ago
-                                    </li>
-                                </ul>
-                                <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                    aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                    for job</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 e-left">
-                            <a href="#"><img src="images/b3.jpg" alt="" class="img-fluid"></a>
-                            <div class="e-desc">
-                                <h6><a href="job_single.html">Web Designer </a></h6>
-
-                                <ul class="e-tags">
-                                    <li>
-                                        javascript</li>
-
-                                    <li>computer vision</li>
-                                    <li>angular js</li>
-                                    <li>c++</li>
-                                </ul>
-                                <hr>
-                                <ul class="desc-list">
-                                    <li>
-                                        <span>Location:</span>
-                                        loremipsum, dolor
-                                    </li>
-                                    <li>
-                                        <span>Salary:</span>
-                                        Negotiable
-                                    </li>
-                                    <li>
-                                        <span>Experience</span>
-                                        Expert
-                                    </li>
-                                    <li>
-                                        <span>Posted: </span>
-                                        1 week ago
-                                    </li>
-                                </ul>
-                                <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                    aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                    for job</a>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        
                     </div>
                 </div>
 
@@ -658,7 +474,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <!-- //register modal -->
     <!-- js -->
-    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
     <!-- script for password match -->
     <script>
         window.onload = function () {
@@ -677,8 +493,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
     </script>
     <!-- script for password match -->
-    <script src="js/move-top.js"></script>
-    <script src="js/easing.js"></script>
+    <script src="{% static 'js/move-top.js' %}"></script>
+    <script src="{% static 'js/easing.js' %}"></script>
     <script>
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
@@ -709,12 +525,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         });
     </script>
-    <script src="js/SmoothScroll.min.js"></script>
+    <script src="{% static 'js/SmoothScroll.min.js' %}"></script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>
