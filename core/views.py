@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.forms.forms import Form
 from django.shortcuts import redirect, render
-from .forms import RegisterForm, UploadForm
+from .forms import RegisterForm, UploadForm, LoginForm
 from django.contrib.auth import login 
 from django.utils.text import slugify
 from django.contrib import messages
@@ -14,16 +14,31 @@ from django.core.paginator import Paginator, EmptyPage
 from .filters import JobFilter
 
 def home(request):
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-        return redirect('home')
-    else:
-        form = RegisterForm()
+    form = LoginForm()
+    rform = RegisterForm()
+    
+    if request.method == "POST" and 'Register' in request.POST:
+            rform = RegisterForm(request.POST)
+            if rform.is_valid():
+                user = rform.save()
+                login(request, user)
+            else:
+                rform = RegisterForm()
+            return redirect('home')
 
-    return render(request, 'index.html', {'form': form})
+    elif request.method == "POST" and 'Login' in request.POST:
+            form = LoginForm(data=request.POST)
+            if form.is_valid():
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+            else:
+                form = LoginForm()
+            return redirect('home')
+
+    return render(request, 'index.html', {'rform': rform, 'form':form})
 
 
 @login_required
