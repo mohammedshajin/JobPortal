@@ -9,5 +9,5 @@ class JobFilter(django_filters.FilterSet):
 
     class Meta:
         model = Job
-        fields = ("title", "location", "salary", "experience" )
+        fields = ("title", "location", "salary", "experience", "jobtype" )
 
