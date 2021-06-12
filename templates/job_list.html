@@ -218,6 +218,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </ul>
                     </div>
                 </div>
+
+
                 <div class="col-lg-8">
                     
                     <div class="row">
@@ -267,14 +269,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="d-flex justify-content-center">
                 <ul class="pagination pt-4">
-                    <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                    <li class="active"><a href="#" class="text-white bg-theme">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li> <a href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
-                    </li>
+                {% if jobs.has_previous %}
+                <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+                <li><a href="?page={{ jobs.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                {% endif %}
+                {% for num in jobs.paginator.page_range %}
+                {% if jobs.number == num %}
+                <li style="width: 40px;
+                height: 40px;
+                background: #0d2865;
+                color: white;
+                text-align: center;
+                margin: 0 10px;
+                line-height: 40px;
+                display: inline-block;
+                border-radius: 50%;">{{ num }}</li>
+                {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+
+                <li style="width: 40px;
+                height: 40px;
+                background: #eee;
+                text-align: center;
+                margin: 0 10px;
+                line-height: 40px;
+                display: inline-block;
+                border-radius: 50%;">{{ num }}</li>
+                {% endif %}
+                {% endfor %}
+                {% if jobs.has_next %}
+                <li><a href="?page={{ jobs.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                <li><a href="?page={{ jobs.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+                {% endif %}
                 </ul>
             </div>
+
+
+
         </div>
     </section>
     <!-- //jobs -->

@@ -910,9 +910,12 @@ ul.pagination li a {
 	border-radius: 50%;
 }
 
+
 ul.pagination li a {
 	color: #333;
 }
+
+
 
 ul.pagination li:first-child a,
 ul.pagination li:last-child a {

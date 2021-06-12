@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.shortcuts import render
 from django.forms.forms import Form
 from django.shortcuts import redirect, render
@@ -8,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import Job
+from django.core.paginator import Paginator, EmptyPage
 
 def home(request):
     if request.method == "POST":
@@ -38,4 +40,8 @@ def post_job(request):
 
 def job_list(request):
     jobs = Job.objects.all()
+    paginator = Paginator(jobs, 6)
+    page = request.GET.get('page')
+    jobs = paginator.get_page(page)
+
     return render(request, 'job_list.html', {'jobs':jobs})
