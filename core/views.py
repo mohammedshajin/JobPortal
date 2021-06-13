@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Job
 from django.core.paginator import Paginator, EmptyPage
 from .filters import JobFilter
+from django.db.models import Q
 
 def home(request):
     form = LoginForm()
@@ -66,3 +67,10 @@ def job_list(request):
     
 
     return render(request, 'job_list.html', {'jobs':jobs, 'myFilter': myFilter})
+
+
+def search(request):
+    query = request.GET.get('query', '')
+    jobs = Job.objects.filter(Q(title__icontains=query) | Q(location__icontains=query))
+
+    return render(request, 'search.html', {'jobs': jobs, 'query': query})
