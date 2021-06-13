@@ -100,14 +100,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </ol>
     </nav>
     <!-- //breadcrumbs -->
-    <div class="row">
-        <div class="col">
-        <div class="card card-body">
-            <form method="get">
-                {{myFilter.form}}
-                <button class="btn btn-primary" type="submit">Search</button>
-            </form>
+    <div class="row justify-content-between bnr-form-w3ls">
+        <div class="col-lg-4">
+            <h4>A better career is out there. We'll help you find it to use.</h4>
         </div>
+        <div class="col-lg-8">
+            <form action="{% url 'search' %}" method="get" class="bnr-field">
+                <div class="row">
+                    <div class="col-md-5 form-group mb-md-0">
+                        <label class="text-capitalize">
+                            looking for job
+                        </label>
+                        <input class="form-control" type="text" name="query" 
+                            placeholder="Job title,Keywords">
+                    </div>
+                    <div class="col-md-5 mb-md-0 form-group">
+                        <label class="text-capitalize">
+                            place to work
+                        </label>
+                        <input class="form-control" type="text" name="place" 
+                            placeholder="City,State,zip">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-w3ltd btn-block w-100 bg-theme font-weight-bold text-uppercase"><span
+                                class="fa fa-search"></span></button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
