@@ -74,3 +74,9 @@ def search(request):
     jobs = Job.objects.filter(Q(title__icontains=query) | Q(location__icontains=query))
 
     return render(request, 'search.html', {'jobs': jobs, 'query': query})
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')

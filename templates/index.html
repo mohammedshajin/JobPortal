@@ -56,11 +56,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <a href="{% url 'home' %}">Home</a>
                             </li>
                             <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                                <a href="about.html">about</a>
+                                <a href="{% url 'about' %}">about</a>
                             </li>
                             
                             <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                                <a href="contact.html">contact</a>
+                                <a href="{% url 'contact' %}">contact</a>
                             </li>
                             <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
                                 <a href="{% url 'job_list' %}">jobs</a>
@@ -271,20 +271,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <span class="fa fa-info-circle" aria-hidden="true"></span>
                     <h4 class="home-title my-3">why choose us</h4>
                     <p> Pellentesque in ipsum id orci porta dapibus roined magna orem ipsum dolor sit amet,consetetur.</p>
-                    <a href="about.html" class="btn wthree-bnr-btn">Read more</a>
+                    <a href="{% url 'about' %}" class="btn wthree-bnr-btn">Read more</a>
                 </div>
                 <div class="col-md-4 my-4 home-grid">
                     <span class="head-line"></span>
                     <span class="fa fa-connectdevelop" aria-hidden="true"></span>
                     <h4 class="home-title my-3">what we do</h4>
                     <p> Pellentesque in ipsum id orci porta dapibus roined magna orem ipsum dolor sit amet,consetetur.</p>
-                    <a href="about.html" class="btn wthree-bnr-btn">Read more</a>
+                    <a href="{% url 'about' %}" class="btn wthree-bnr-btn">Read more</a>
                 </div>
                 <div class="col-md-4 my-4 home-grid">
                     <span class="fa fa-users" aria-hidden="true"></span>
                     <h4 class="home-title my-3">explore yourself</h4>
                     <p> Pellentesque in ipsum id orci porta dapibus roined magna orem ipsum dolor sit amet,consetetur.</p>
-                    <a href="about.html" class="btn wthree-bnr-btn">Read more</a>
+                    <a href="{% url 'about' %}" class="btn wthree-bnr-btn">Read more</a>
                 </div>
             </div>
         </div>
@@ -330,13 +330,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="job_list.html" class="btn wthree-bnr-btn">Read more</a>
+                        <a href="{% url 'job_list' %}" class="btn wthree-bnr-btn">Read more</a>
                     </div>
                 </div>
                 <div class="offset-lg-4"></div>
             </div>
         </div>
-        <img src="images/services.jpg" alt="" class="img-fluid">
+        <img src="{% static 'images/services.jpg' %}" alt="" class="img-fluid">
     </section>
     <!-- //services -->
     <!-- job roles -->
@@ -398,7 +398,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <span class="title-wthree text-white">a world full of possibilities</span>
                 <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
             </div>
-            <img src="images/services.jpg" alt="" class="img-fluid">
+            <img src="{% static 'images/services.jpg' %}" alt="" class="img-fluid">
             <div class="row head-row-home mx-0">
                 <div class="offset-5"></div>
                 <div class="col-lg-5">
@@ -433,7 +433,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="job_list.html" class="btn wthree-bnr-btn">Read more</a>
+                        <a href="{% url 'job_list' %}" class="btn wthree-bnr-btn">Read more</a>
                     </div>
                 </div>
                 <div class="offset-2"></div>
@@ -553,7 +553,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <footer id="footer" class="py-sm-5 py-4 bg-theme">
         <div class="container">
             <div class="footer-top-w3ls">
-                <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
+                <h2><a href="{% url 'home' %}" class="navbar-brand">recruit</a></h2>
                 <p class="text-white">Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
                     ut labore et dolore magna aliquyam
                     erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
@@ -580,23 +580,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h5>Quick links</h5>
                     <ul class="list-unstyled quick-links">
                         <li>
-                            <a href="index.html">
+                            <a href="{% url 'home' %}">
                                 <span class="fa fa-play"></span>Home</a>
                         </li>
                         <li>
-                            <a href="about.html">
+                            <a href="{% url 'about' %}">
                                 <span class="fa fa-play"></span>About</a>
                         </li>
                         <li>
-                            <a href="job_list.html">
+                            <a href="{% url 'job_list' %}">
                                 <span class="fa fa-play"></span>Job List</a>
                         </li>
                         <li>
-                            <a href="job_single.html">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
+                            <a href="{% url 'contact' %}">
                                 <span class="fa fa-play"></span>Contact</a>
                         </li>
                     </ul>
@@ -606,23 +602,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h5>Quick links</h5>
                     <ul class="list-unstyled quick-links">
                         <li>
-                            <a href="index.html">
+                            <a href="{% url 'home' %}">
                                 <span class="fa fa-play"></span>Home</a>
                         </li>
                         <li>
-                            <a href="about.html">
+                            <a href="{% url 'about' %}">
                                 <span class="fa fa-play"></span>About</a>
                         </li>
                         <li>
-                            <a href="job_list.html">
+                            <a href="{% url 'job_list' %}">
                                 <span class="fa fa-play"></span>Job List</a>
                         </li>
+                        
                         <li>
-                            <a href="job_single.html">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
+                            <a href="{% url 'contact' %}">
                                 <span class="fa fa-play"></span>Contact</a>
                         </li>
                     </ul>
