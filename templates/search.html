@@ -54,11 +54,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <a href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                            <a href="about.html">about</a>
+                            <a href="{% url 'about' %}">about</a>
+                        </li>
+                        <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                            <a href="{% url 'job_list' %}">jobs</a>
                         </li>
                        
                         <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                            <a href="contact.html">contact</a>
+                            <a href="{% url 'contact' %}l">contact</a>
                         </li>
                     </ul>
                     {% if request.user.is_authenticated %}
@@ -94,7 +97,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb d-flex justify-content-center bg-theme">
             <li class="breadcrumb-item">
-                <a href="index.html" class="text-white">Home</a>
+                <a href="{% url 'home' %}" class="text-white">Home</a>
             </li>
             <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Job List</li>
         </ol>
@@ -138,17 +141,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <span class="title-wthree">Search</span>
                 <h3 class="w3layouts_pvt-head" style="color:#41d8d1;">Search term: "{{ query }}"</h3>
             </div>
-            <div class="row pt-lg-5">
-                
-                <div class="col-lg-8">
-                    
-        
-                
-                    <div class="col-lg-20">
-                                    
+            <div class="row">
+                           
                         <div class="row">
                             {% for job in jobs %}
-                            <div class="col-sm-6 e-left" style="border-style: solid; border-color: #efefef;">
+                            <div class="col-sm-4" style="border-style: solid; border-color: #efefef;">
                                 <a href="#"><img src="{{ job.image.url }}" alt="" class="img-fluid"></a>
                                 <div class="e-desc">
                                     <h6><a href="#">{{ job.title }}</a></h6>
@@ -192,7 +189,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     
                 </div>
-            </div>
+            
             <div class="d-flex justify-content-center">
                 <ul class="pagination pt-4">
                 {% if jobs.has_previous %}
@@ -238,7 +235,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <footer id="footer" class="py-sm-5 py-4 bg-theme">
         <div class="container">
             <div class="footer-top-w3ls">
-                <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
+                <h2><a href="{% url 'home' %}" class="navbar-brand">recruit</a></h2>
                 <p class="text-white">Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
                     ut labore et dolore magna aliquyam
                     erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
@@ -265,23 +262,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h5>Quick links</h5>
                     <ul class="list-unstyled quick-links">
                         <li>
-                            <a href="index.html">
+                            <a href="{% url 'home' %}">
                                 <span class="fa fa-play"></span>Home</a>
                         </li>
                         <li>
-                            <a href="about.html">
+                            <a href="{% url 'about' %}">
                                 <span class="fa fa-play"></span>About</a>
                         </li>
                         <li>
-                            <a href="job_list.html">
+                            <a href="{% url 'job_list' %}">
                                 <span class="fa fa-play"></span>Job List</a>
                         </li>
+                    
                         <li>
-                            <a href="job_single.html">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
+                            <a href="{% url 'contact' %}">
                                 <span class="fa fa-play"></span>Contact</a>
                         </li>
                     </ul>
@@ -291,23 +285,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h5>Quick links</h5>
                     <ul class="list-unstyled quick-links">
                         <li>
-                            <a href="index.html">
+                            <a href="{% url 'home' %}">
                                 <span class="fa fa-play"></span>Home</a>
                         </li>
                         <li>
-                            <a href="about.html">
+                            <a href="{% url 'about' %}">
                                 <span class="fa fa-play"></span>About</a>
                         </li>
                         <li>
-                            <a href="job_list.html">
+                            <a href="{% url 'job_list' %}">
                                 <span class="fa fa-play"></span>Job List</a>
                         </li>
+                        
                         <li>
-                            <a href="job_single.html">
-                                <span class="fa fa-play"></span>Job Single</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
+                            <a href="{% url 'contact' %}">
                                 <span class="fa fa-play"></span>Contact</a>
                         </li>
                     </ul>
