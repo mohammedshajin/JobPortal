@@ -1420,3 +1420,18 @@ input[type="submit"] {
 }
 
 /* -- //Responsive code -- */
+
+/* single blog */
+
+.singlepostdiv {
+	width: 100%;
+}
+
+.sinblogimage {
+	padding: 10px;
+}
+
+.sinblogtitle {
+	text-align: center; 
+	padding: 10px;
+}
