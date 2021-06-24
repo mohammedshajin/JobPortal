@@ -1,5 +1,4 @@
 
-
 <!--Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -103,93 +102,66 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </ol>
     </nav>
     <!-- //breadcrumbs -->
-    <div class="row justify-content-between bnr-form-w3ls">
-        <div class="col-lg-4">
-            <h4>A better career is out there. We'll help you find it to use.</h4>
-        </div>
-        <div class="col-lg-8">
-            <form action="{% url 'search' %}" method="get" class="bnr-field">
-                <div class="row">
-                    <div class="col-md-5 form-group mb-md-0">
-                        <label class="text-capitalize">
-                            looking for job
-                        </label>
-                        <input class="form-control" type="text" name="query" 
-                            placeholder="Job title,Keywords">
-                    </div>
-                    <div class="col-md-5 mb-md-0 form-group">
-                        <label class="text-capitalize">
-                            place to work
-                        </label>
-                        <input class="form-control" type="text" name="place" 
-                            placeholder="City,State,zip">
-                    </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button class="btn btn-w3ltd btn-block w-100 bg-theme font-weight-bold text-uppercase"><span
-                                class="fa fa-search"></span></button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 
+    <!-- blog -->
 
-    <!-- jobs -->
-    <section class="employ-sec">
-        <div class="container">
-            <div class="title-sec-w3layouts_pvt text-center pb-4">
-                <span class="title-wthree">Search</span>
-                <h3 class="w3layouts_pvt-head" style="color:#41d8d1;">Search term: "{{ query }}"</h3>
+    <section class="blog_w3ls py-lg-5">
+        <div class="container py-5">
+            <div class="title-sec-w3layouts_pvt text-center">
+                <span class="title-wthree">a world full of possibilities</span>
+                <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
             </div>
-            <div class="row">
-                           
-                        <div class="row" style="width: 1200px;">
-                            {% for job in jobs %}
-                            <div class="col-sm-4" style="border-style: solid; border-color: #efefef; width: 354px;">
-                                <a href="#"><img src="{{ job.image.url }}" alt="" class="img-fluid"></a>
-                                <div class="e-desc"style="width: 354px;>
-                                    <h6><a href="#">{{ job.title }}</a></h6>
-                
-                                    <ul class="e-tags" >
-                                        <li>
-                                            javascript</li>
-                
-                                        <li>computer vision</li>
-                                        <li>angular js</li>
-                                        <li>c++</li>
-                                    </ul>
-                                    <hr>
-                                    <ul class="desc-list">
-                                        <li>
-                                            <span>Location:</span>
-                                            {{ job.location }}
-                                        </li>
-                                        <li>
-                                            <span>Salary:</span>
-                                            {{ job.salary }}
-                                        </li>
-                                        <li>
-                                            <span>Experience:</span>
-                                            {{ job.experience }}
-                                        </li>
-                                        <li>
-                                            <span>Posted: </span>
-                                            {{ job.posted }}
-                                        </li>
-                                    </ul>
-                                    <a href="#exampleModal" class="btn wthree-bnr-btn text-capitalize" data-toggle="modal"
-                                        aria-pressed="false" data-target="#exampleModal" role="button">Apply
-                                        for job</a>
-                                </div>
-                                </div>
-                            
-                            {% endfor %}
-                            
+            <div class="row head-row-home">
+                {% for all_post in all_posts %}
+                <!-- blog grid -->
+                <div class="col-lg-4 col-md-6 mt-sm-0 mt-4">
+                    <div class="card border-0">
+                        <div class="card-header p-0">
+                            <a href="#exampleModal2" data-toggle="modal" aria-pressed="false" data-target="#exampleModal2"
+                                role="button">
+                                <img class="card-img-bottom" src="{{ all_post.thumbnail.url }}" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="card-body border-0 px-0">
+                            <div class="blog_w3icon d-flex justify-content-between">
+                                <span>
+                                    By: Admin</span>
+                                <span>
+                                    {{all_post.publish}}</span>
+                            </div>
+                            <div class="pt-4">
+                                <h5 class="blog-title card-title font-weight-bold">
+                                    <a href="#exampleModal2" data-toggle="modal" aria-pressed="false" data-target="#exampleModal2"
+                                        role="button">{{all_post.title}}</a>
+                                </h5>
+                                <p>{{all_post.content|truncatechars:100}}.</p>
+                            </div>
+                            <button type="button" class="btn blog-btn wthree-bnr-btn" data-toggle="modal" aria-pressed="false"
+                                data-target="#exampleModal2">
+                                <a href="{{all_post.get_absolute_url}}"> Read more</a>
+                            </button>
                         </div>
                     </div>
-                    
                 </div>
-            
+                <!-- //blog grid -->
+                {% endfor %}
+                
+                
+            </div>
+        </div>
+    </section>
+    <!-- //blog -->
+
+
+    <!-- //blog -->
+
+
+
+
+    <!-- pagenumber -->
+    
+
+
             <div class="d-flex justify-content-center">
                 <ul class="pagination pt-4">
                 {% if jobs.has_previous %}
@@ -226,7 +198,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </ul>
             </div>
 
-
+<!-- //pagenumber -->
 
         </div>
     </section>

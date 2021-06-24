@@ -65,6 +65,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
                                 <a href="{% url 'job_list' %}">jobs</a>
                             </li>
+                            <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
+                                <a href="{% url 'blog' %}">blog</a>
+                            </li>
                         </ul>
                         {% if request.user.is_authenticated %}
                         <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
