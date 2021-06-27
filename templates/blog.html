@@ -60,7 +60,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </li>
                        
                         <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                            <a href="{% url 'contact' %}l">contact</a>
+                            <a href="{% url 'contact' %}">contact</a>
+                        </li>
+                        <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3 active">
+                            <a href="{% url 'blog' %}">blog</a>
                         </li>
                     </ul>
                     {% if request.user.is_authenticated %}
@@ -162,41 +165,69 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     
 
 
-            <div class="d-flex justify-content-center">
-                <ul class="pagination pt-4">
-                {% if jobs.has_previous %}
-                <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
-                <li><a href="?page={{ jobs.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
-                {% endif %}
-                {% for num in jobs.paginator.page_range %}
-                {% if jobs.number == num %}
-                <li style="width: 40px;
-                height: 40px;
-                background: #0d2865;
-                color: white;
-                text-align: center;
-                margin: 0 10px;
-                line-height: 40px;
-                display: inline-block;
-                border-radius: 50%;">{{ num }}</li>
-                {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+    <div style="padding: 20px;" class="d-flex justify-content-center">
+        <ul class="pagination pt-4">
+        {% if all_posts.has_previous %}
+        <li style="width: 40px;
+        height: 40px;
+        background: #eee;
+        text-align: center;
+        margin: 0 10px;
+        line-height: 40px;
+        display: inline-block;
+        border-radius: 50%;"><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+        <li style="width: 40px;
+        height: 40px;
+        background: #eee;
+        text-align: center;
+        margin: 0 10px;
+        line-height: 40px;
+        display: inline-block;
+        border-radius: 50%;"><a href="?page={{ all_posts.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+        {% for num in all_posts.paginator.page_range %}
+        {% if all_posts.number == num %}
+        <li style="width: 40px;
+        height: 40px;
+        background: #0d2865;
+        color: white;
+        text-align: center;
+        margin: 0 10px;
+        line-height: 40px;
+        display: inline-block;
+        border-radius: 50%;">{{ num }}</li>
+        {% elif num > all_posts.number|add:'-3' and num < all_posts.number|add:'3' %}
 
-                <li style="width: 40px;
-                height: 40px;
-                background: #eee;
-                text-align: center;
-                margin: 0 10px;
-                line-height: 40px;
-                display: inline-block;
-                border-radius: 50%;">{{ num }}</li>
-                {% endif %}
-                {% endfor %}
-                {% if jobs.has_next %}
-                <li><a href="?page={{ jobs.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
-                <li><a href="?page={{ jobs.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
-                {% endif %}
-                </ul>
-            </div>
+        <li style="width: 40px;
+        height: 40px;
+        background: #eee;
+        text-align: center;
+        margin: 0 10px;
+        line-height: 40px;
+        display: inline-block;
+        border-radius: 50%;">{{ num }}</li>
+        {% endif %}
+        {% endfor %}
+        {% if all_posts.has_next %}
+        <li style="width: 40px;
+        height: 40px;
+        background: #eee;
+        text-align: center;
+        margin: 0 10px;
+        line-height: 40px;
+        display: inline-block;
+        border-radius: 50%;"><a href="?page={{ all_posts.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+        <li style="width: 40px;
+        height: 40px;
+        background: #eee;
+        text-align: center;
+        margin: 0 10px;
+        line-height: 40px;
+        display: inline-block;
+        border-radius: 50%;"><a href="?page={{ all_posts.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+        {% endif %}
+        </ul>
+    </div>
 
 <!-- //pagenumber -->
 
