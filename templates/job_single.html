@@ -3,12 +3,12 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
-    <title>Recruit HR Management Category Flat Bootstrap Responsive website Template | Job Single :: w3layouts</title>
+    <title>Recruit HR Management Category Flat Bootstrap Responsive website Template | Job List :: w3layouts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <meta name="keywords" content="Recruit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -23,10 +23,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
     </script>
     <!-- Custom Theme files -->
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="all">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet" media="all">
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">
     <!-- font-awesome icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <!-- //Custom Theme files -->
     <!-- online-fonts -->
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
@@ -38,7 +38,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <header>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light p-0">
-                <h1><a class="navbar-brand" href="index.html">Recruit
+                <h1><a class="navbar-brand" href="{% url 'home' %}">Recruit
 
                     </a></h1>
                 <button class="navbar-toggler ml-lg-auto ml-sm-5 bg-light" type="button" data-toggle="collapse"
@@ -48,34 +48,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="ml-lg-5 navbar-nav mr-lg-auto">
-                        <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                            <a href="index.html">Home</a>
+                        <li class="nav-item mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                            <a href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                            <a href="about.html">about</a>
+                            <a href="{% url 'about' %}">about</a>
                         </li>
-                        <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3  active ">
-                            <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                Pages
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a href="job_list.html">Job List</a>
-                                <a href="job_single.html">Job Single</a>
-                            </div>
+                        <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3 active">
+                            <a href="{% url 'job_list' %}">jobs</a>
                         </li>
                         <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                            <a href="contact.html">contact</a>
+                            <a href="{% url 'contact' %}">contact</a>
+                        </li>
+                        <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
+                            <a href="{% url 'blog' %}">blog</a>
                         </li>
                     </ul>
-                    <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
-                        aria-pressed="false" data-target="#exampleModal1">
-                        Register
-                    </button>
-                    <button type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block"
-                        data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
-                        Sign in
-                    </button>
+                    {% if request.user.is_authenticated %}
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                            aria-pressed="false" data-target="#exampleModal1">
+                            <a href="{% url 'post_job' %}" style="color: white;">Post A Job</a>
+                        </button>
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                            aria-pressed="false" data-target="#exampleModal1">
+                            <a href="{% url 'logout' %}" style="color: white;">logout</a>
+                        </button>
+                        {% else %}
+                        <a href="{% url 'home' %}">
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                            aria-pressed="false" data-target="#exampleModal1">
+                            Register
+                            
+                        </button></a>
+                        <a href="{% url 'home' %}">
+                        <button type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block"
+                            data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+                            Sign in
+                        </button></a>
+                        {% endif %}
                 </div>
             </nav>
         </div>
@@ -87,12 +97,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb d-flex justify-content-center bg-theme">
             <li class="breadcrumb-item">
-                <a href="index.html" class="text-white">Home</a>
+                <a href="{% url 'home' %}" class="text-white">Home</a>
             </li>
-            <li class="breadcrumb-item">
-                <a href="job_list.html" class="text-white">Job List</a>
-            </li>
-            <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Job Single</li>
+            <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Job List</li>
+            <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">{{job.title}}</li>
         </ol>
     </nav>
     <!-- //breadcrumbs -->
@@ -119,13 +127,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="e-desc">
                             <div class="job-desc-w3ls">
                                 <ul>
-                                    <li>Role: <strong>Front-End Developer</strong></li>
-                                    <li>Industry: <strong>Mobile / Software Development</strong></li>
-                                    <li>Company size: <strong> 5k-10k People</strong></li>
-                                    <li>Job type: <strong>Permanent</strong></li>
-                                    <li>Experience level: <strong>Mid-Level, Senior, Lead</strong></li>
-                                    <li>Salary: <strong>Negotiable</strong></li>
-                                    <li>Location: <strong>Place 1 / Place 2</strong></li>
+                                    <li>Role: <strong>{{job.title}}</strong></li>
+                                    <!-- <li>Industry: <strong>Mobile / Software Development</strong></li>
+                                    <li>Company size: <strong> 5k-10k People</strong></li> -->
+                                    <li>Job type: <strong>{{job.jobtype}}</strong></li>
+                                    <li>Experience level: <strong>{{job.experience}}</strong></li>
+                                    <li>Salary: <strong>{{job.salary}}</strong></li>
+                                    <li>Location: <strong>{{job.location}}</strong></li>
 
                                 </ul>
                             </div>
@@ -146,25 +154,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <div class="job-role">
                         <h5 class="w3layouts_pvt-head">get to know the role</h5>
-                        <p>Donec consequat sapien ut leo cursus rhoncus. Nullam dui mi, vulputate ac metus at, semper
-                            varius orci. Nulla accumsan
-                            ac elit in congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                            inceptos Class aptent taciti
-                            sociosqu ad litora torquent p himenaeos.</p>
-                        <div class=" job-desc-w3ls">
-                            <ul class="mt-3">
-                                <li>
-                                    <i class="fa fa-angle-right mr-3"></i>Cras justo odio</li>
-                                <li>
-                                    <i class="fa fa-angle-right mr-3"></i>Dapibus ac facilisis in</li>
-                                <li>
-                                    <i class="fa fa-angle-right mr-3"></i>Morbi leo risus</li>
-                                <li>
-                                    <i class="fa fa-angle-right mr-3"></i>Porta ac consectetur ac</li>
-                                <li>
-                                    <i class="fa fa-angle-right  mr-3"></i>Vestibulum at eros</li>
-                            </ul>
-                        </div>
+                        <p>{{job.desc}}.</p>
+                        
                     </div>
 
 
@@ -374,7 +365,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <!-- //register modal -->
     <!-- js -->
-    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
     <!-- script for password match -->
     <script>
         window.onload = function () {
@@ -393,9 +384,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
     </script>
     <!-- script for password match -->
-    <!-- //js -->
-    <script src="js/move-top.js"></script>
-    <script src="js/easing.js"></script>
+    <script src="{% static 'js/move-top.js' %}"></script>
+    <script src="{% static 'js/easing.js' %}"></script>
     <script>
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
@@ -426,12 +416,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         });
     </script>
-    <script src="js/SmoothScroll.min.js"></script>
+    <script src="{% static 'js/SmoothScroll.min.js' %}"></script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>

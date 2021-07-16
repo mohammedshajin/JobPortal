@@ -247,7 +247,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-sm-6 e-left" style="border-style: solid; border-color: #efefef;">
                             <a href="#"><img src="{{ job.image.url }}" alt="" class="img-fluid"></a>
                             <div class="e-desc">
-                                <h6><a href="#">{{ job.title }}</a></h6>
+                                <h6><a href="{{job.get_absolute_url}}">{{ job.title }}</a></h6>
 
                                 <ul class="e-tags">
                                     <li>

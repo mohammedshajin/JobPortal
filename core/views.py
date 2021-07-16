@@ -1,6 +1,6 @@
 from django.core import paginator
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.forms.forms import Form
 from django.shortcuts import redirect, render
 from .forms import RegisterForm, UploadForm, LoginForm
@@ -68,6 +68,12 @@ def job_list(request):
 
     return render(request, 'job_list.html', {'jobs':jobs, 'myFilter': myFilter})
 
+def job_single(request, job):
+    all_jobs = Job.objects.all()
+
+    job = get_object_or_404(Job, slug=job)
+
+    return render(request, 'job_single.html', {'job' : job, 'all_jobs':all_jobs})
 
 def search(request):
     query = request.GET.get('query', '')

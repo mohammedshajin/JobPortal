@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.fields import CharField, TextField
 from django.contrib.auth.models import User
 from django.forms.fields import ImageField
+from django.urls import reverse
 
 EXPERIENCE_CHOICES = [
     ("0-1", "0-1"),
@@ -38,3 +39,6 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('job_single',args=[self.slug])

@@ -10,4 +10,5 @@ urlpatterns = [
     path('post-job/', views.post_job, name="post_job"),
     path('job-list/', views.job_list, name="job_list"),
     path('search/', views.search, name='search'),
+    path('<slug:job>/', views.job_single, name='job_single'),
 ]
