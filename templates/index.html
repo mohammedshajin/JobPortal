@@ -444,53 +444,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
     </section>
     <!-- //services bottom-->
-    <!-- blog -->
-    <section class="blog_w3ls py-lg-5">
-        <div class="container py-5">
-            <div class="title-sec-w3layouts_pvt text-center">
-                <span class="title-wthree">a world full of possibilities</span>
-                <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
-                <h4 class="w3layouts_pvt-head">Blogs</h4>
-            </div>
-            <div class="row head-row-home">
-                <!-- blog grid -->
-                <div class="col-lg-4 col-md-6 mt-sm-0 mt-4">
-                    <div class="card border-0">
-                        <div class="card-header p-0">
-                            <a href="#exampleModal2" data-toggle="modal" aria-pressed="false" data-target="#exampleModal2"
-                                role="button">
-                                <img class="card-img-bottom" src="{% static 'images/b1.jpg' %}" alt="Card image cap">
-                            </a>
+<!-- blog -->
+
+<section class="blog_w3ls py-lg-5">
+    <div class="container py-5">
+        <div class="title-sec-w3layouts_pvt text-center">
+            <span class="title-wthree">a world full of possibilities</span>
+            <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
+        </div>
+        <div class="row head-row-home">
+            {% for all_post in all_posts %}
+            <!-- blog grid -->
+            <div class="col-lg-4 col-md-6 mt-sm-0 mt-4">
+                <div class="card border-0">
+                    <div class="card-header p-0">
+                        <a href="#exampleModal2" data-toggle="modal" aria-pressed="false" data-target="#exampleModal2"
+                            role="button">
+                            <img class="card-img-bottom" src="{{ all_post.thumbnail.url }}" alt="Card image cap">
+                        </a>
+                    </div>
+                    <div class="card-body border-0 px-0">
+                        <div class="blog_w3icon d-flex justify-content-between">
+                            <span>
+                                By: Admin</span>
+                            <span>
+                                {{all_post.publish}}</span>
                         </div>
-                        <div class="card-body border-0 px-0">
-                            <div class="blog_w3icon d-flex justify-content-between">
-                                <span>
-                                    By: Admin</span>
-                                <span>
-                                    20/6/2018</span>
-                            </div>
-                            <div class="pt-4">
-                                <h5 class="blog-title card-title font-weight-bold">
-                                    <a href="#exampleModal2" data-toggle="modal" aria-pressed="false" data-target="#exampleModal2"
-                                        role="button">Cras ultricies ligula sed magna dictum porta auris blandita.</a>
-                                </h5>
-                                <p>At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit
-                                    ametLorem ipsum dolor sit amet,sed diam nonumy.</p>
-                            </div>
-                            <button type="button" class="btn blog-btn wthree-bnr-btn" data-toggle="modal" aria-pressed="false"
-                                data-target="#exampleModal2">
-                                Read more
-                            </button>
+                        <div class="pt-4">
+                            <h5 class="blog-title card-title font-weight-bold">
+                                <a href="#exampleModal2" data-toggle="modal" aria-pressed="false" data-target="#exampleModal2"
+                                    role="button">{{all_post.title}}</a>
+                            </h5>
+                            <p>{{all_post.content|truncatechars:100}}.</p>
                         </div>
+                        <button type="button" class="btn blog-btn wthree-bnr-btn" data-toggle="modal" aria-pressed="false"
+                            data-target="#exampleModal2">
+                            <a href="{{all_post.get_absolute_url}}"> Read more</a>
+                        </button>
                     </div>
                 </div>
-                <!-- //blog grid -->
-                
-                
             </div>
+            <!-- //blog grid -->
+            {% endfor %}
+            
+            
         </div>
-    </section>
-    <!-- //blog -->
+    </div>
+</section>
+<!-- //blog -->
     <!-- Footer -->
     <footer id="footer" class="py-sm-5 py-4 bg-theme">
         <div class="container">

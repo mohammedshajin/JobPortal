@@ -13,6 +13,7 @@ from .models import Job
 from django.core.paginator import Paginator, EmptyPage
 from .filters import JobFilter
 from django.db.models import Q
+from blog.models import Post
 
 def home(request):
     form = LoginForm()
@@ -38,8 +39,10 @@ def home(request):
             else:
                 form = LoginForm()
             return redirect('home')
+    
+    all_posts = Post.objects.all()
 
-    return render(request, 'index.html', {'rform': rform, 'form':form})
+    return render(request, 'index.html', {'rform': rform, 'form':form, 'all_posts':all_posts})
 
 
 @login_required
